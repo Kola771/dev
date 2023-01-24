@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+        form {
+            width: 500px;
+        }
+        .container {
+            display: flex;
+            gap: .5em
+        }
+        #input-text {
+            padding: .5em;
+            outline: none;
+            border-radius: .2em;
+            flex-basis: 70%;
+        }
+        button {
+            background-color: rgb(91, 91, 185);
+            color: white;
+            flex-basis: 20%;
+            border: none;
+            border-radius: .2em;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <fieldset>
+            <div class="container">
+                <input type="text" id="input-text" placeholder="Ecrire">
+                <button type="submit">Ajouter</button>
+            </div>
+            <ul class="ajout">
+
+            </ul>
+        </fieldset>
+    </form>
+
+    <ul id="myList">
+        <!-- le contenu sera rempli avec JavaScript -->
+      </ul>
+
+    <script src="./script.js"></script>
+</body>
+</html>

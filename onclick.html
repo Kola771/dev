@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+        form {
+            margin: 0 auto;
+            max-width: 900px;
+            background-color: rgb(56, 42, 56);
+            padding: 1em;
+        }
+        h2 {
+            color: white;
+        }
+        .container {
+            display: flex;
+            gap: .5em
+        }
+        .input-text {
+            padding: 1em;
+            outline: none;
+            border-radius: .2em;
+            flex-basis: 80%;
+        }
+        input[type=submit] {
+            background-color: rgb(91, 91, 185);
+            color: white;
+            flex-basis: 20%;
+            border: none;
+            border-radius: .2em;
+        }
+        #myList {
+            padding: 0;
+        }
+        .li {
+            border: 2px solid white;
+            border-radius: .5em;
+            color: white;
+            list-style: none;
+            margin-block: 15px;
+            padding: .2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            background-color: rgb(91, 91, 185);
+            color: white;
+            border: none;
+            border-radius: .2em;
+            padding: .5em;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+            <h2>My To do List</h2>
+            <div class="container">
+                <input type="text" data-personal="clos" class="input-text" placeholder="Ecrire">
+                <input type="submit" class="submit" value="Ajouter">
+            </div>
+            
+                <ul id="myList">
+                    <!-- le contenu sera rempli avec JavaScript -->
+                  </ul>
+    </form>
+
+    <script src="./onclick.js"></script>
+</body>
+</html>

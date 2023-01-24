@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.global.js"></script>
+    <title>Resto</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        .titleClass {
+            color: red;
+        }
+
+        #app {
+            margin: 10% auto;
+            max-width: 70%;
+            box-shadow: 0px 8px 16px 0px #326da5;
+            padding: 2em;
+        }
+
+        form > div {
+            display: flex;
+            gap: .5em;
+        }
+
+        form > div > input {
+            flex-basis: 70%;
+            padding: 1em;
+            outline: none;
+        }
+
+        form > div > input:focus {
+            background-color: #ddd;
+        }
+
+        form div > button {
+            flex-basis: 30%;
+            border: none;
+            padding: 1em;
+            background-color: #326da5;
+            color: white;
+        }
+
+        form div > button:hover {
+            background-color: #11293f;
+        }
+
+        h2 {
+            color: #326da5;
+            font-weight: bold;
+            font-size: 2em;
+        }
+
+        #app>button {
+            border: none;
+            padding: 1em;
+            background-color: #326da5;
+            color: white;
+        }
+
+        #app>button:hover {
+            background-color: #11293f;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: rgb(212, 135, 135);
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            border: 1px solid;
+            border-radius: .5em;
+            margin-block: .5em;
+            padding: .5em;
+            display: flex;
+            justify-content: space-between;
+            background-color: #326da5;
+            color: white;
+        }
+
+        li > button {
+            border: none;
+            background-color: #f50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <form @submit.prevent="addTodo">
+            <h2>My Todo list</h2>
+            <div>
+                <input v-model="newTodo">
+                <button>Add Todo</button>
+            </div>
+        </form>
+        <ul>
+            <li v-for="todo in filteredTodos" :key="todo.id">
+                <div>
+                    <input type="checkbox" v-model="todo.done">
+                    <span :class="{done:todo.done}">{{todo.texte}}</span>
+                </div>
+                <button @click="removeTodo(todo)">x</button>
+            </li>
+        </ul>
+        <button @click="hideCompleted = !hideCompleted">
+            {{hideCompleted ? "Show all" : "Hide completed"}}
+        </button>
+    </div>
+
+    <script>
+        let id = 0;
+        const vue = Vue.createApp({
+
+            data() {
+                return {
+                    newTodo: "",
+                    hideCompleted: false,
+                    todos: [
+                        { id: id++, texte: 'Tache 1', done: true },
+                        { id: id++, texte: 'Tache 2', done: true },
+                        { id: id++, texte: 'Tache 3', done: false },
+                    ]
+                }
+            },
+
+            methods: {
+
+                addTodo() {
+                    this.todos.unshift({ id: id++, texte: this.newTodo, done: false });
+                    this.newTodo = '';
+                },
+
+                removeTodo(todo) {
+                    this.todos = this.todos.filter((t) => t !== todo);
+                }
+            },
+
+            computed: {
+                filteredTodos() {
+                    if (this.hideCompleted) {
+                        return this.todos.filter((toto) => toto.done === false);
+                    }
+                        return this.todos;
+                }
+            }
+
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

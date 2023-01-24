@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.global.js"></script>
+    <title>Resto</title>
+    <style>
+        .titleClass {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-bind:class="element">{{titre}}</h1>
+        <button v-on:click="appuyer">Appuyer</button>
+        <p>{{x}}</p>
+
+        <form action="#">
+            <input type="text" :value="text" @input="onInput">
+            <p>{{text}}</p>
+        </form>
+
+        <button v-on:click="toggle">Basculer</button>
+        <h1 v-if="genial">Vue c'est génial</h1>
+        <h1 v-else>Oh no</h1>
+
+        <form @submit.prevent="addTodo">
+            <input v-model="newTodo">
+            <button>Add Todo</button>
+        </form>
+        <ul>
+            <li v-for="todo in todos" :key="todo.id">
+                {{todo.texte}}
+                <button @click="removeTodo(todo)">x</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let id = 0;
+        const vue = Vue.createApp({
+
+            data() {
+                return {
+                    titre: "Compteur",
+                    element: "titleClass",
+                    x: 0,
+                    text: "",
+                    genial: true,
+                    newTodo: "",
+                    todos: [
+                        {id: id++, texte: ''},
+                    ]
+                }
+            },
+
+            methods: {
+                appuyer() {
+                    this.x = this.x + 1;
+                },
+
+                onInput(e) {
+                    this.text = e.target.value;
+                },
+
+                toggle() {
+                    if (this.genial) {
+                        this.genial = false;
+                    }
+                    else {
+                        this.genial = true;
+                    }
+                },
+
+                addTodo() {
+                    this.todos.push({id: id++, texte: this.newTodo});
+                    this.newTodo = '';
+                },
+
+                removeTodo(todo) {
+                    this.todos = this.todos.filter((t) => t !== todo );
+                }
+            }
+
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

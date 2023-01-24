@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.global.js"></script>
+    <title>Test</title>
+    <style>
+        #app {
+            margin: 0 auto;
+            max-width: 60%;
+        }
+
+        button {
+            padding: 1em;
+            border: none;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5em;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            flex-basis: 100%;
+            border: 2px solid black;
+            padding: 1em;
+            background-color: #f50;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="show = !show">Toggle</button>
+        <button v-on:click="tableau.push(tableau.length + 1)">Ajouter</button>
+        <button v-on:click="tableau.pop()">Supprimer</button>
+        <button v-on:click="tableau.reverse()">Renverser</button>
+        <ul v-if="show && tableau.length">
+            <li v-for="items of tableau">{{items}}</li>
+        </ul>
+        <p v-else-if="tableau.length">La liste n'est pas vide, mais elle est cachée.</p>
+        <p v-else>La liste est vide.</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    show: true,
+                    tableau: [1, 2, 3]
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

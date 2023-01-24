@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>Vue JS</title>
+    <style>
+        .ok {
+            aspect-ratio: 1;
+            width: 200px;
+            background-color: #f50;
+            margin-block: 15px;
+        }
+
+        .ok1 {
+            background-color: rgb(97, 94, 94);
+        }
+
+        .ok2 {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <form action="#">
+            <input type="text" name="search" id="search" v-model = "input">
+            <input type="submit" value="Envoyer">
+        </form>
+        <p>Valeur de la saisie: {{input}}</p> -->
+        <!-- <div v-if ="isVisible" class="ok">div 1</div>
+        <div v-else-if ="isVisible1" class="ok ok1">div 2</div>
+        <div  v-else class="ok ok2">div 3</div> -->
+        <h2>Directive v-for pour les tableaux</h2>
+        <ul>
+            <li v-for="tache of arr">{{tache}}</li>
+        </ul>
+        <h2>Directive v-for pour les objets</h2>
+        <ul>
+            <li v-for="tache in objet">{{tache}}</li>
+        </ul>
+
+        <table>
+            <thead>
+                <th>Noms</th>
+                <th>Prénoms</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                <tr v-for = "val of tables">
+                    <td>{{val.firstname}}</td>
+                    <td>{{val.lastname}}</td>
+                    <td>{{val.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li v-for="element of links"><a v-bind:href="element.href">{{element.title}}</a></li>
+        </ul>
+
+        <div>
+            <img v-for="image of images" v-bind:src="image.src" v-blind:alt="image.alt">
+        </div>
+    </div>
+
+
+    <script>
+        // const app = document.getElementById("app");
+        const vue = new Vue({
+            el: "#app",
+            // template: ` <div>
+            //             <h1>Hello Vue from Highfive !</h1>
+            //             <p>Bonjour à tous</p>
+            //             <h1>Hello Vue from Highfive !</h1>
+            //             <p>Bonjour à tous</p>
+            //             </div>`,
+            data: {
+                arr: ['item1', 'item2', 'item3', 'item4'],
+                objet: { firstname: "John", lastname: "Doe", age: 25 },
+                tables: [{firstname: "John", lastname:"Doe", age: 25}],
+
+                links: [
+                    {title: "home", href: "./index.html"},
+                    {title: "contact", href: "./contact.html"},
+                    {title: "about", href: "./about.html"},
+                ],
+
+                images: [
+                    {src: "comics1.jpg", alt: "comics"},
+                    {src: "comics1.jpg", alt: "comics"},
+                    {src: "comics1.jpg", alt: "comics"},
+                    {src: "comics1.jpg", alt: "comics"},
+                ]
+            },
+        });     // Instancie un objet vue
+
+    </script>
+</body>
+
+</html>

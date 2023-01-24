@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="todoId-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.global.js"></script>
+    <title>Resto</title>
+    <style>
+      button {
+        border: none;
+        padding: 1em;
+      }
+      p {
+        color: #f50;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{todoId}}</p>
+        <button @click="appuyer">Cliquez</button>
+        <pre>{{ todoData }}</pre>
+    </div>
+
+    <script>
+        const vue = Vue.createApp({
+
+            
+            data() {
+                return {
+                    todoId: 0,
+                    todoData: null,
+                    todos: [
+                        {"id": 1, "user": "Tache 1"},
+                        {"id": 2, "user": "Tache 2"},
+                        {"id": 3, "user": "Tache 3"},
+                        {"id": 4, "user": "Tache 4"},
+                        {"id": 5, "user": "Tache 5"},
+                        {"id": 6, "user": "Tache 6"},
+                    ]
+                }
+            },
+
+            methods: {
+                appuyer() {
+                    this.todoId = this.todoId + 1;
+                }
+            },
+
+            watch: {
+                todoId(newId) {
+                    this.todoData = this.todos.filter(el => el.id === newId);
+                }
+            }
+
+
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
